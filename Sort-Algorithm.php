@@ -4,20 +4,36 @@
             return $sort_algorithm->sorting($arr);
         }
     }
-
     interface Sort_Algorithm{
         public function sorting($arr);
     }
-
-
-    //Kim viet anh dang làm ve thuat toan sap xep chon.
-    class Slectionsort implements Sort_Algorithm{
+    // Quicksort by duynv
+    class Quicksort implements Sort_Algorithm{
         public function sorting($arr){
-            
+            $length = count($arr);
+	
+	if($length <= 1){
+		return $arr;
+	}
+	else{
+	
+		$pivot = $arr[0];
+		
+		$left = $right = array();
+		
+		for($i = 1; $i < count($arr); $i++)
+		{
+			if($arr[$i] < $pivot){
+				$left[] = $arr[$i];
+			}
+			else{
+				$right[] = $arr[$i];
+			}
+		}
+    		return array_merge($this->sorting($left), array($pivot), $this->sorting($right));
         }
     }
+}
+    $sx = new Sorting_Solution;
+    print_r($sx-> sort(new Quicksort(), [12,6,4,98,67]));
 
-    $sortingSolution = new Sorting_Solution;
-    echo $sortingSolution->sort(new Slectionsort(), [1,2,3,4,5]);
-
-?>
