@@ -10,12 +10,13 @@ interface Sort_Algorithm {
 }
 class Bubble implements Sort_Algorithm {
     public function sorting ($arr) {
-        $size = count($arr)-1;
+        $size = count($arr);
         for ($i=0; $i<$size; $i++) {
-            for ($j=0; $j<$size-$i; $j++) {
-                $k = $j+1;
-                if ($arr[$k] < $arr[$j]) {
-                    list($arr[$j], $arr[$k]) = array($arr[$k], $arr[$j]);
+            for ($j=0; $j<$size-1-$i; $j++) {
+                if ($arr[$j+1] < $arr[$j]) {
+                    $tmp = $arr[$j];
+                    $arr[$j] = $arr[$j+1];
+                    $arr[$j+1] = $tmp;
                 }
             }
         }
@@ -24,5 +25,4 @@ class Bubble implements Sort_Algorithm {
 }
 $s = new Sorting_Solution();
 print_r($s->sort(new Bubble(), [7,9,2,8,6,4,2]));
-
 ?>
