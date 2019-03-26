@@ -1,7 +1,7 @@
 <?php
 
 class Sorting_Solution {
-    public function sort (Sort_Algorithm $sort_algorith, $arr) {
+    public function sort (Sort_Algorithm $sort_algorithm, $arr) {
         return $sort_algorithm->sorting($arr);
     }
 }
@@ -24,5 +24,5 @@ class BubbleSort implements Sort_Algorithm {
     }
 }
 $s = new Sorting_Solution();
-print_r($s->sort(new BubbleSort(), [7,9,2,8,6,4,2]));
+print_r($s->sort(new BubbleSort(), [7,9,-2,8,6,4,2]));
 ?>
