@@ -9,7 +9,7 @@ interface Sort_Algorithm {
 }
 class BubbleSort implements Sort_Algorithm {
     public function sorting($arr) {
-        $size = count($arr);
+        $size = sizeof($arr);
         for ($i = 0;$i < $size;$i++) {
             for ($j = 0;$j < $size - 1 - $i;$j++) {
                 if ($arr[$j + 1] < $arr[$j]) {
