@@ -15,15 +15,12 @@
         public function sorting($arr){
             $total = count($arr);
             for($i = 0; $i < $total; $i++){
-                // Tìm vị trí phần tử nhỏ nhất
                 $min = $i;
                 for ($j = $i + 1; $j < $total; $j++){
                     if ($arr[$j] < $arr[$min]){
                         $min = $j;
                     }
                 }
-                // Sau khi có vị trí nhỏ nhất thì hoán vị
-                // với vị trí thứ $i
                 $temp = $arr[$i];
                 $arr[$i] = $arr[$min];
                 $arr[$min] = $temp;
