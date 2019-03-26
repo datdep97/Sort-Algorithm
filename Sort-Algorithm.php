@@ -2,13 +2,13 @@
 
 class Sorting_Solution {
     public function sort (Sort_Algorithm $sort_algorith, $arr) {
-        return $sort_algorith->sorting($arr);
+        return $sort_algorithm->sorting($arr);
     }
 }
 interface Sort_Algorithm {
     public function sorting($arr);
 }
-class Bubble implements Sort_Algorithm {
+class BubbleSort implements Sort_Algorithm {
     public function sorting ($arr) {
         $size = count($arr);
         for ($i=0; $i<$size; $i++) {
@@ -24,5 +24,5 @@ class Bubble implements Sort_Algorithm {
     }
 }
 $s = new Sorting_Solution();
-print_r($s->sort(new Bubble(), [7,9,2,8,6,4,2]));
+print_r($s->sort(new BubbleSort(), [7,9,2,8,6,4,2]));
 ?>
