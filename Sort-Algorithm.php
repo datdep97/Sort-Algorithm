@@ -28,11 +28,11 @@
                 $arr[$i] = $arr[$min];
                 $arr[$min] = $temp;
             }
-            return print_r($arr);
+            return $arr;
         }
     }
 
     $sortingSolution = new Sorting_Solution;
-    echo $sortingSolution->sort(new SelectionSort(), [5,3,1,4,2]);
+    print_r($sortingSolution->sort(new SelectionSort(), [5,3,1,4,2]));
 
 ?>
