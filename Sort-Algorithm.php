@@ -1,4 +1,4 @@
-,<?php
+<?php
 
 class Sorting_Solution {
     public function sort (Sort_Algorithm $sort_algorith, $arr) {
