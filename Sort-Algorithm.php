@@ -72,9 +72,9 @@ class InsertionSort implements Sort_Algorithm {
 //         }
 //     }
 // }
-$run = new Sorting_solution();
-print_r($run->sort(new BubbleSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($run->sort(new SelectionSort(), [2, 1, 3, 8, 6, 9, 4]));
-// print_r($run->sort(new QuickSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($r->sort(new InsertionSort(), [2, 1, 3, 8, 6, 9, 4]));
+$sorting_solution = new Sorting_Solution();
+print_r($sorting_solution->sort(new BubbleSort(), [2, 1, 3, 8, 6, 9, 4]));
+print_r($sorting_solution->sort(new SelectionSort(), [2, 1, 3, 8, 6, 9, 4]));
+// print_r($sorting_solution->sort(new QuickSort(), [2, 1, 3, 8, 6, 9, 4]));
+print_r($sorting_solution->sort(new InsertionSort(), [2, 1, 3, 8, 6, 9, 4]));
 ?>
