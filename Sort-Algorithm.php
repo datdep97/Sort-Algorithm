@@ -53,28 +53,28 @@ class InsertionSort implements Sort_Algorithm {
         return print_r($arr);
     }
 }
-class QuickSort implements Sort_Algorithm {
-    public function sorting($arr) {
-        $length = count($arr);
-        if ($length <= 1) {
-            return $arr;
-        } else {
-            $pivot = $arr[0];
-            $left = $right = array();
-            for ($i = 1;$i < count($arr);$i++) {
-                if ($arr[$i] < $pivot) {
-                    $left[] = $arr[$i];
-                } else {
-                    $right[] = $arr[$i];
-                }
-            }
-            return array_merge($this->sorting($left), array($pivot), $this->sorting($right));
-        }
-    }
-}
-$abc = new Sorting_Solution();
-print_r($abc->sort(new BubbleSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($abc->sort(new SelectionSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($abc->sort(new QuickSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($abc->sort(new InsertionSort(), [2, 1, 3, 8, 6, 9, 4]));
+// class QuickSort implements Sort_Algorithm {
+//     public function sorting($arr) {
+//         $length = count($arr);
+//         if ($length <= 1) {
+//             return $arr;
+//         } else {
+//             $pivot = $arr[0];
+//             $left = $right = array();
+//             for ($i = 1;$i < count($arr);$i++) {
+//                 if ($arr[$i] < $pivot) {
+//                     $left[] = $arr[$i];
+//                 } else {
+//                     $right[] = $arr[$i];
+//                 }
+//             }
+//             return array_merge($this->sorting($left), array($pivot), $this->sorting($right));
+//         }
+//     }
+// }
+$run = new Sorting_solution();
+print_r($run->sort(new BubbleSort(), [2, 1, 3, 8, 6, 9, 4]));
+print_r($run->sort(new SelectionSort(), [2, 1, 3, 8, 6, 9, 4]));
+// print_r($run->sort(new QuickSort(), [2, 1, 3, 8, 6, 9, 4]));
+print_r($r->sort(new InsertionSort(), [2, 1, 3, 8, 6, 9, 4]));
 ?>
