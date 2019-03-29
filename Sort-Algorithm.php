@@ -1,35 +1,21 @@
+
 <?php
+    require('interface/interface.php');
+    require('select-sort/Select-Sort.php');
+    require('bubble-sort/Bubble-Sort.php');
+    require('insertion-sort/Insertion-Sort.php');
+    // require('quick-sort/Quick-Sort.php');
+
     class Sorting_Solution{
         public function sort(Sort_Algorithm $sort_algorithm, $arr){
             return $sort_algorithm->sorting($arr);
         }
     }
 
-    interface Sort_Algorithm{
-        public function sorting($arr);
-    }
-
-
-    //viet anh dang làm ve thuat toan sap xep chon.
-    class SelectionSort implements Sort_Algorithm{
-        public function sorting($arr){
-            $total = count($arr);
-            for($i = 0; $i < $total; $i++){
-                $min = $i;
-                for ($j = $i + 1; $j < $total; $j++){
-                    if ($arr[$j] < $arr[$min]){
-                        $min = $j;
-                    }
-                }
-                $temp = $arr[$i];
-                $arr[$i] = $arr[$min];
-                $arr[$min] = $temp;
-            }
-            return $arr;
-        }
-    }
-
     $sortingSolution = new Sorting_Solution;
     print_r($sortingSolution->sort(new SelectionSort(), [5,3,1,4,2]));
-
+    print_r($sortingSolution->sort(new BubbleSort(), [12,34,32,11,67]));
+    print_r($sortingSolution->sort(new InsertionSort(), [21,43,12,87,33]));
+    // print_r($sortingSolution->sort(new QuickSort(), [10,2,27,19,97]));
+    
 ?>
