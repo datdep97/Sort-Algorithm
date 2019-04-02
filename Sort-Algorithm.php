@@ -3,7 +3,7 @@
     {
         public $newsort =array();
         public $default;
-        public function registersort($name,$numberA,$numberB)
+        public function registersort(Sort_Algorithm $name,$numberA,$numberB)
         {
             array_push($this->newsort,array($name,$numberA,$numberB));
         }
