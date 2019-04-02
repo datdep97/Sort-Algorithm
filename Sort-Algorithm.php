@@ -1,14 +1,15 @@
 <?php
    class Sorting_Solution {
-       public function sort($arr) {
-        foreach (get_declared_classes() as $className) {
-            if (in_array('Sort_Algorithm', class_implements($className))) {
-                if($className::canHandle($arr)) {
-                    print_r($className::sorting($arr));
-                }
-            }
-        }
-       }
+     public function register(Sort_Algorithm $sort_algorithm) {
+       $this->sort_algorithm = $sort_algorithm;
+     }
+     public function sort($arr) {
+       $size = count($arr);
+       if($this->sort_algorithm->canHandle($size)){
+         print_r($this->sort_algorithm->sorting($arr));
+       } else
+       throw new Exception('Exceeding the permitted limits!');
+     }
    }
 
    interface Sort_Algorithm {
@@ -18,7 +19,7 @@
 
    class BubbleSort implements Sort_Algorithm {
        public function canHandle($limit) {
-           if (sizeof($limit) > 0 & sizeof($limit)  < 10) {
+           if ($limit > 0 && $limit  < 10) {
                return true;
            } else
                return false;
@@ -38,12 +39,12 @@
    }
        
    class SelectionSort implements Sort_Algorithm {
-    public function canHandle($limit) {
-        if (sizeof($limit) > 10 & sizeof($limit)  < 15) {
-            return true;
-        } else
-            return false;
-    }
+       public function canHandle($limit) {
+           if ($limit > 10 && $limit  < 15) {
+               return true;
+           } else
+               return false;
+       }
     public function sorting($arr) {
         $total = count($arr);
         for ($i = 0;$i < $total;$i++) {
@@ -62,12 +63,12 @@
 }
 
 class InsertionSort implements Sort_Algorithm {
-    public function canHandle($limit) {
-        if (sizeof($limit) > 15 & sizeof($limit)  < 20) {
-            return true;
-        } else
-            return false;
-    }
+       public function canHandle($limit) {
+           if ($limit > 15 && $limit  < 20) {
+               return true;
+           } else
+               return false;
+       }
     public function sorting($arr) {
         $total = count($arr);
         for ($i = 0;$i < $total;$i++) {
@@ -83,6 +84,14 @@ class InsertionSort implements Sort_Algorithm {
     }
 }
 
-$sorting_solution = new Sorting_Solution();
-$sorting_solution->sort([2, 1, 3, 8, 6, 9, 4]);
+$ss = new Sorting_Solution();
+$ss->register(new BubbleSort);
+$ss->register(new SelectionSort);
+$ss->register(new InsertionSort);
+try {
+    $ss->sort([2, 1, 3, 8, 6, 9, 41, 3, 8, 6, 9, 41, 3, 8, 6, 9, 41, 3, 8, 6, 9, 4]);
+} catch(Exception $e) {
+  echo 'Warning: ' .$e->getMessage();
+}
+
 ?>
