@@ -1,29 +1,34 @@
 <?php
-    class Sorting_Solution {
-        public function sort(Sort_Algorithm $sort_algorith, $arr) {
-            return $sort_algorith->sorting($arr);
+    class Sorting_Solution
+    {
+        public $newsort =array();
+        public $default;
+        public function registersort($name,$numberA,$numberB)
+        {
+            array_push($this->newsort,array($name,$numberA,$numberB));
+        }
+        public function sort($arr)
+        {
+            $this->default = $this->newsort[0][0];
+            for($i=0;$i < count($this->newsort);$i++)
+            {
+                if(count($arr) >= $this->newsort[$i][1] && count($arr) < $this->newsort[$i][2] )
+                {
+                    return ($this->newsort[$i][0])->sorting($arr);
+                }
+                else
+                {
+                    if($i==(count($this->newsort)-1))
+                    return ($this->default)->sorting($arr);
+                }
+            }
         }
     }
-
+    
     interface Sort_Algorithm {
         public function sorting($arr);
     }
-
-    class BubbleSort implements Sort_Algorithm {
-        public function sorting($arr) {
-            $size = count($arr) - 1;
-            for ($i = 0;$i < $size;$i++) {
-                for ($j = 0;$j < $size - $i;$j++) {
-                    $k = $j + 1;
-                    if ($arr[$k] < $arr[$j]) {
-                        list($arr[$j], $arr[$k]) = array($arr[$k], $arr[$j]);
-                    }
-                }
-            }
-            return $arr;
-        }
-    }
-
+    
     class SelectionSort implements Sort_Algorithm {
         public function sorting($arr) {
             $total = count($arr);
@@ -58,29 +63,31 @@
         }
     }
 
-    // class QuickSort implements Sort_Algorithm {
-    //     public function sorting($arr) {
-    //         $length = count($arr);
-    //         if ($length <= 1) {
-    //             return $arr;
-    //         } else {
-    //             $pivot = $arr[0];
-    //             $left = $right = array();
-    //             for ($i = 1;$i < count($arr);$i++) {
-    //                 if ($arr[$i] < $pivot) {
-    //                     $left[] = $arr[$i];
-    //                 } else {
-    //                     $right[] = $arr[$i];
-    //                 }
-    //             }
-    //             return array_merge($this->sorting($left), array($pivot), $this->sorting($right));
-    //         }
-    //     }
-    // }
+    class QuickSort implements Sort_Algorithm {
+        public function sorting($arr) {
+            $length = count($arr);
+            if ($length <= 1) {
+                return $arr;
+            } else {
+                $pivot = $arr[0];
+                $left = $right = array();
+                for ($i = 1;$i < count($arr);$i++) {
+                    if ($arr[$i] < $pivot) {
+                        $left[] = $arr[$i];
+                    } else {
+                        $right[] = $arr[$i];
+                    }
+                }
+                return array_merge($this->sorting($left), array($pivot), $this->sorting($right));
+            }
+        }
+    }
 
 $sorting_solution = new Sorting_Solution();
-print_r($sorting_solution->sort(new BubbleSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($sorting_solution->sort(new SelectionSort(), [2, 1, 3, 8, 6, 9, 4]));
-// print_r($sorting_solution->sort(new QuickSort(), [2, 1, 3, 8, 6, 9, 4]));
-print_r($sorting_solution->sort(new InsertionSort(), [2, 1, 3, 8, 6, 9, 4]));
+$sorting_solution->registersort(new QuickSort,0,5);
+$sorting_solution->registersort(new InsertionSort,6,11);
+print_r($sorting_solution->sort([2, 1, 3, 8]));
+print_r($sorting_solution->sort([2, 1, 3, 8, 6, 9, 4,11,15,12]));
+print_r($sorting_solution->sort([2, 1, 3, 8, 6, 9, 4,11,15,12,19,21,25,46,67]));
 ?>
+
